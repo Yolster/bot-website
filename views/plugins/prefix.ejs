@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+  <link rel="icon" href="/images/title-quod.png"/>
+  <script src="https://kit.fontawesome.com/fe063c303c.js" crossorigin="anonymous"></script>
+  <title>PREFIX</title>
+</head>
+<body>
+
+  <nav class="nav">
+  <a href="/" class="nav-button left"><i class="fas fa-home"></i> HOME</a>&emsp;&emsp;
+  <a href="/" class="nav-button left"><i class="fas fa-rocket"></i> PREMIUM</a>&emsp;&emsp; 
+  <a href="/" class="nav-button left"><i class="fas fa-question"></i> SUPPORT</a> 
+   <% if(user != "yok" ){ %>
+    <a href="/dashboard" class="nav-button right"><i class="fas fa-user"></i> <%= user.username %></a> 
+    <% } else { %>
+      <a href="<%= loginlink %>" class="nav-button right"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+      <% } %>
+</nav>
+<br/>
+
+<section class="plugin-section">
+<br/><br/><br/>
+<p id="success"></p>
+<br/><br/>
+<h1>PREFIX:</h1>
+<br/>
+<form id="prefix-form" style="margin-top: 1em;" method="POST"> 
+  <p>Prefix</p>
+  <p style="color:lightslategray">You can change the bot's prefix on the server</p>
+  <br/>
+  <input type="hidden" id="guildid" value="<%= guild.id %>">
+  <input type="text" id="prefix" class="form" name="prefix" value="<%= prefix %>" placeholder="Your prefix" required="require"><br><br>
+  <button type="submit" class="submit-button">Save Settings</button>
+</form>
+</section>
+<script src="http://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script>
+  var guildID = document.getElementById("guildid").value;
+  $('#prefix-form').submit(function (e) {
+    e.preventDefault();
+    $.ajax({
+			url:`/dashboard/${guildID}/prefix`,
+			type:'POST', 
+			data: {
+      prefix: document.getElementById("prefix").value,
+      guildid: document.getElementById("guildid").value
+      },
+      success: document.getElementById('success').innerHTML = "YOUR SETTINGS HAVE BEEN SAVED"
+		});
+  });
+</script>
+
+</body>
+</html>

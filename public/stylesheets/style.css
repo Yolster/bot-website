@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    color:white;
+    background-color: #24293E;
+    font-family: 'Inter', sans-serif;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+nav , section , footer {
+    display: block;
+}
+
+.nav {
+    color:white;
+    background-color: #1E2336;
+    padding: 20px;
+    box-shadow: black 3px 3px 7px;
+}
+
+.nav-button {
+    color:white;
+    text-decoration: none;   
+    border: 1px solid #1E2336;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    float: right;
+}
+
+.index-section {
+    text-decoration-color:white;
+    text-align: center;
+    background-color: #24293E;
+}
+
+.quodpng {
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+}
+
+.index-button {
+    font-family: 'Inter', sans-serif;
+    width: 200px;
+    height: 50px;
+    background-color: #1E2336;
+    color:white;
+    text-decoration: none;   
+    padding: 10px;
+    border: 1px solid #1E2336;
+    box-shadow: black 2px 2px 2px;
+}
+
+.row {
+    float:left;
+    text-align: center;
+    width:200px;
+    height: 200px;
+    border: 1px solid #1E2336;
+    margin:25px;
+    box-shadow: black 3px 3px 3px;
+}
+
+.guildicon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.dashboard {
+    color: lightslategray;
+    text-decoration: none;
+}
+
+.plugin-section {
+    padding: 5%;
+}
+
+.rows {
+    width:1200px;
+}
+
+.plugin {
+    margin:20px;
+    float: left;
+    width:300px;
+    height:100px;
+    background-color: #1E2336;
+    box-shadow:black 3px 3px 5px;
+    padding:20px
+}
+
+.py {
+    text-decoration: none;
+    color:white;
+}
+
+.py1 {
+    text-decoration: none;
+    color:lightslategray;
+    font-size:14px;
+}
+
+.submit-button {
+    width: 100px;
+    height: 40px;
+    background-color: deepskyblue;
+    border: 1px solid deepskyblue;
+    color: white;
+    font-family: 'Inter', sans-serif; 
+    outline: none;
+} 
+
+.submit-button:active {
+    width: 100px;
+    height: 40px;
+    background-color: rgb(24, 114, 95);
+    border: 1px solid rgb(24, 114, 95);
+    color: white;
+    font-family: 'Inter', sans-serif; 
+    outline: none;
+} 
+
+
+.form {
+    width: 1000px;
+    height:10px;
+    padding:1%;
+    border: 1px solid whitesmoke;
+    outline:none;
+}
+
+.form:focus {
+    border: 1px solid deepskyblue;
+}
+
+.custom-select{
+    background-color: white;
+    color:black;
+    font-family: 'Inter', sans-serif; 
+}

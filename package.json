@@ -1,0 +1,31 @@
+{
+  "name": "dashboard",
+  "author": "Yolster",
+  "license": "GNU GPL V3",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yolster/discord-dashboard"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chalk": "^4.1.0",
+    "cookie-parser": "~1.4.4",
+    "cookies": "^0.8.0",
+    "crypto": "^1.0.1",
+    "debug": "~2.6.9",
+    "discord-oauth2": "^2.6.0",
+    "discord.js": "^12.5.1",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "fs": "0.0.1-security",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
+    "node-superfetch": "^0.1.11"
+  }
+}

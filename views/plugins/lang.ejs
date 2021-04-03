@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+  <link rel="icon" href="/images/title-quod.png"/>
+  <script src="https://kit.fontawesome.com/fe063c303c.js" crossorigin="anonymous"></script>
+  <title>LANGUAGE</title>
+</head>
+<body>
+
+  <nav class="nav">
+  <a href="/" class="nav-button left"><i class="fas fa-home"></i> HOME</a>&emsp;&emsp;
+  <a href="/" class="nav-button left"><i class="fas fa-rocket"></i> PREMIUM</a>&emsp;&emsp; 
+  <a href="/" class="nav-button left"><i class="fas fa-question"></i> SUPPORT</a> 
+   <% if(user != "yok" ){ %>
+    <a href="/dashboard" class="nav-button right"><i class="fas fa-user"></i> <%= user.username %></a> 
+    <% } else { %>
+      <a href="<%= loginlink %>" class="nav-button right"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+      <% } %>
+</nav>
+<br/>
+
+<section class="plugin-section">
+  <br/><br/><br/>
+  <p id="success"></p>
+  <br/><br/>
+<h1>Language:</h1>
+<br/>
+<form id="lang-form" style="margin-top: 1em;" method="POST"> 
+  <p>Language</p>
+  <p style="color:lightslategray">You can change the bot's language on the server</p>
+  <br/>
+  <input type="hidden" id="guildid" value="<%= guild.id %>">
+      <select id="lang" name="lang" class="form custom-select">
+       <option disabled>Please select language</option>
+       <option value="fr">French</option>
+       <option value="tr">Turkish</option>
+       <option value="en">English</option>
+  </select>
+<br/><br/>
+  <button type="submit" class="submit-button">Save Settings</button>
+</form>
+</section>
+<script src="http://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script>
+   var guildID = document.getElementById("guildid").value;
+  $('#lang-form').submit(function (e) {
+    e.preventDefault();
+    $.ajax({
+			url:`/dashboard/${guildID}/lang`,
+			type:'POST', 
+			data: {
+      lang: document.getElementById("lang").value,
+      guildid: document.getElementById("guildid").value
+      },
+      succes: document.getElementById('success').innerHTML = "YOUR SETTINGS HAVE BEEN SAVED"
+		});
+  });
+</script>
+
+</body>
+</html>

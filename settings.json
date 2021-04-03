@@ -1,0 +1,10 @@
+{
+    "token": "discordbot-token", 
+    "clientId":"discordbot-id",
+    "clientSecret":"discordbot-secret",
+    "redirectUri":"callback-url",
+    "host":"mysqlhost",
+    "user":"mysqlusername",
+    "password":"mysqlpassword",
+    "db":"mysqldb"
+}
