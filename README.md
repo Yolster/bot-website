@@ -7,5 +7,3 @@ Css içeren basit bir bot paneldir. Express , mysql ve Discord.js kullanılmış
 1. Prefix
 
 2. Dil
-
-Yolster tarafından hazırlanmıştır :)
