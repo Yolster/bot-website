@@ -1,0 +1,10 @@
+{
+    "token": "", 
+    "clientId":"",
+    "clientSecret":"",
+    "redirectUri":"",
+    "host":"",
+    "user":"",
+    "password":"",
+    "db":""
+}
