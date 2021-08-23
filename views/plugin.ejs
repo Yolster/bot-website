@@ -4,43 +4,61 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/bootstrap.css" type="text/css">
   <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
   <link rel="icon" href="/images/title-quod.png"/>
-  <title>PLUGINS</title>
+  <script src="https://kit.fontawesome.com/fe063c303c.js" crossorigin="anonymous"></script>
+  <title>HOME</title>
 </head>
-<body>
+<body class="bg-dark text-light">
 
-  <nav class="nav">
-  <a href="/" class="nav-button left"><i class="fas fa-home"></i> HOME</a>&emsp;&emsp;
-  <a href="/" class="nav-button left"><i class="fas fa-rocket"></i> PREMIUM</a>&emsp;&emsp; 
-  <a href="/" class="nav-button left"><i class="fas fa-question"></i> SUPPORT</a> 
+  <nav class="navbar navbar-expand navbar-dark bg-dark shadow-lg">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+  <a href="/" class="nav-link active"><i class="fas fa-home"></i> HOME</a>
+</li>
+<li class="nav-item">
+  <a href="/" class="nav-link active"><i class="fas fa-rocket"></i> PREMIUM</a>
+</li>
+<li class="nav-item">
+  <a href="/" class="nav-link active"><i class="fas fa-question"></i> SUPPORT</a>
+</li>
+</ul>
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
    <% if(user != "yok" ){ %>
-    <a href="/dashboard" class="nav-button right"><i class="fas fa-user"></i> <%= user.username %></a> 
+    <li class="nav-item">
+    <a href="/dashboard" class="nav-link active"><i class="fas fa-user"></i> <%= user.username %></a> 
+  </li>
     <% } else { %>
-      <a href="<%= loginlink %>" class="nav-button right"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+      <li class="nav-item">
+      <a href="<%= loginlink %>" class="nav-link active"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+    </li>
       <% } %>
-</nav>
+</ul>
+  </nav>
 <br/>
 
-<section class="plugin-section">
-   &emsp;EXTRA
+<section class="section">
+  <div class="container">
+<h2>Extra</h2>
    <br/>
-   <div class="rows">
-       <div class="plugin">
-        &emsp;<i class="fas fa-exclamation fa-5x" style="color:lightslategrey; float:left;"></i>
+   <div class="row">
+       <div class="col-4 btn btn-dark shadow-lg me-3 pt-3 pb-3">
+        <i class="fas fa-exclamation fa-5x text-light float-start"></i>
         <br/>
-      &emsp;<a href="./<%- guildid %>/prefix" class="py">PREFIX</a>
+      <a href="./<%- guildid %>/prefix" class="text-decoration-none text-light">PREFIX</a>
       <br/>
-      &emsp;<a class="py1">Change the QUOD's prefix</a>
+        <a class="text-decoration-none text-light">Change the QUOD's prefix</a>
     </div>
-    <div class="plugin">
-        &emsp;<i class="fas fa-globe-europe fa-5x" style="color:lightslategrey; float:left;"></i>
+    <div class="col-4 btn btn-dark shadow-lg me-3 pt-3 pb-3">
+        <i class="fas fa-globe-europe fa-5x text-light float-start"></i>
         <br/>
-      &emsp;<a href="./<%- guildid %>/lang" class="py">LANGUAGE</a>
+      <a href="./<%- guildid %>/lang" class="text-decoration-none text-light">LANGUAGE</a>
       <br/>
-      &emsp;<a class="py1">Change the QUOD's language</a>
+      <a class="text-decoration-none text-light">Change the QUOD's language</a>
      </div>
    </div>
+  </div>
 </section>
 
 

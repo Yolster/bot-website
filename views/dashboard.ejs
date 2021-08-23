@@ -4,44 +4,64 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/bootstrap.css" type="text/css">
   <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
   <link rel="icon" href="/images/title-quod.png"/>
-  <title>Guilds</title>
+  <script src="https://kit.fontawesome.com/fe063c303c.js" crossorigin="anonymous"></script>
+  <title>HOME</title>
 </head>
-<body>
+<body class="bg-dark text-light">
 
-  <nav class="nav">
-  <a href="/" class="nav-button left"><i class="fas fa-home"></i> HOME</a>&emsp;&emsp;
-  <a href="/" class="nav-button left"><i class="fas fa-rocket"></i> PREMIUM</a>&emsp;&emsp; 
-  <a href="/" class="nav-button left"><i class="fas fa-question"></i> SUPPORT</a> 
+  <nav class="navbar navbar-expand navbar-dark bg-dark shadow-lg">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+  <a href="/" class="nav-link active"><i class="fas fa-home"></i> HOME</a>
+</li>
+<li class="nav-item">
+  <a href="/" class="nav-link active"><i class="fas fa-rocket"></i> PREMIUM</a>
+</li>
+<li class="nav-item">
+  <a href="/" class="nav-link active"><i class="fas fa-question"></i> SUPPORT</a>
+</li>
+</ul>
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
    <% if(user != "yok" ){ %>
-    <a href="/dashboard" class="nav-button right"><i class="fas fa-user"></i> <%= user.username %></a> 
+    <li class="nav-item">
+    <a href="/dashboard" class="nav-link active"><i class="fas fa-user"></i> <%= user.username %></a> 
+  </li>
     <% } else { %>
-      <a href="<%= loginlink %>" class="nav-button right"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+      <li class="nav-item">
+      <a href="<%= loginlink %>" class="nav-link active"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+    </li>
       <% } %>
-</nav>
+</ul>
+  </nav>
 <br/>
-<section class="index-section">
-  <img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" class="guildicon"/><br/>
-<%= user.username %>
+
+<section class="section p-3">
+
+  <h1>  <img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" class="rounded-pill"/>
+<%= user.username %></h1>
 <br/>
+<hr/>
+<div class="container">
+  <div class="row">
 <%  guilds.forEach(guild => {
     const permsOnGuild = new perms(guild.permissions);
     if(!permsOnGuild.has("ADMINISTRATOR")) return;
   %>
-  <div class="row">
-    <br/>
-    <img src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>  ? 'gif' : 'png'" class="guildicon"/>
-  <p><%= guild.name %></p>
-  <br/>
+    <div class="col-2 btn btn-dark me-5" align="center">
+    <img src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>  ? 'gif' : 'png'" class="rounded-pill"/><br/>
+  <p class="text-light"><%= guild.name %></p>
   <% if (bot.guilds.cache.get(guild.id)) { %>
-    <a href="/dashboard/<%= guild.id %>" class="dashboard">Edit Settings</a>
+    <a href="/dashboard/<%= guild.id %>" class="btn btn-dark">Edit Settings</a>
   <% } else { %>
-    <a href="<%= `http://bit.ly/quodbot` %>"  class="dashboard">Add Bot</a>
+    <a href="<%= `http://bit.ly/quodbot` %>"  class="btn btn-dark">Add Bot</a>
   <% } %>
-
 </div>
   <% }); %>
+</div>
+</div>
 </section>
 </body>
 </html>

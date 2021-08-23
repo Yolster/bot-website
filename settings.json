@@ -1,10 +1,10 @@
 {
-    "token": "discordbot-token", 
-    "clientId":"discordbot-id",
-    "clientSecret":"discordbot-secret",
-    "redirectUri":"callback-url",
-    "host":"mysqlhost",
-    "user":"mysqlusername",
-    "password":"mysqlpassword",
-    "db":"mysqldb"
+    "token": "ODA4Nzc2MTQ0Nzk0MDI2MDI0.YCLdew.CxLn6_4hiUBPA9jrW0qp_YMm6tI", 
+    "clientId":"808776144794026024",
+    "clientSecret":"lHwoNLS0LYSo-PsYfOqd7w-3nIAWTag2",
+    "redirectUri":"http://localhost:3000/callback",
+    "host":"localhost",
+    "user":"root",
+    "password":"",
+    "db":"discord-dashboard"
 }

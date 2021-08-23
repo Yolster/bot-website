@@ -4,38 +4,54 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/bootstrap.css" type="text/css">
   <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
   <link rel="icon" href="/images/title-quod.png"/>
+  <script src="https://kit.fontawesome.com/fe063c303c.js" crossorigin="anonymous"></script>
   <title>HOME</title>
 </head>
-<body>
+<body class="bg-dark text-light">
 
-  <nav class="nav">
-  <a href="/" class="nav-button left"><i class="fas fa-home"></i> HOME</a>&emsp;&emsp;
-  <a href="/" class="nav-button left"><i class="fas fa-rocket"></i> PREMIUM</a>&emsp;&emsp; 
-  <a href="/" class="nav-button left"><i class="fas fa-question"></i> SUPPORT</a> 
+  <nav class="navbar navbar-expand navbar-dark bg-dark shadow-lg">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+  <a href="/" class="nav-link active"><i class="fas fa-home"></i> HOME</a>
+</li>
+<li class="nav-item">
+  <a href="/" class="nav-link active"><i class="fas fa-rocket"></i> PREMIUM</a>
+</li>
+<li class="nav-item">
+  <a href="/" class="nav-link active"><i class="fas fa-question"></i> SUPPORT</a>
+</li>
+</ul>
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
    <% if(user != "yok" ){ %>
-    <a href="/dashboard" class="nav-button right"><i class="fas fa-user"></i> <%= user.username %></a> 
+    <li class="nav-item">
+    <a href="/dashboard" class="nav-link active"><i class="fas fa-user"></i> <%= user.username %></a> 
+  </li>
     <% } else { %>
-      <a href="<%= loginlink %>" class="nav-button right"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+      <li class="nav-item">
+      <a href="<%= loginlink %>" class="nav-link active"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+    </li>
       <% } %>
-</nav>
+</ul>
+  </nav>
 <br/>
 
-<section class="index-section">
+<section class="section" align="center">
     <br/><br/><br/>
-    <img src="/images/quod.png" class="quodpng">
+    <img src="/images/quod.png" class="rounded-pill" width="300px" height="300px">
     <br/><br/>
     <h3>QUOD</h3>
     <h4 style="color:lightslategrey">Easy to use discord bot</h3>
         <br/>
         <% if(user != "yok" ){ %>
-            <a href="/dashboard"><button class="index-button"><i class="fas fa-user"></i> <%= user.username %></button></a> 
+            <a href="/dashboard"><button class="btn btn-dark"><i class="fas fa-user"></i> <%= user.username %></button></a> 
             <% } else { %>
-              <a href="<%= loginlink %>"><button class="index-button"><i class="fas fa-sign-in-alt"></i> Login with Discord</button></a>
+              <a href="<%= loginlink %>"><button class="btn btn-dark"><i class="fas fa-sign-in-alt"></i> Login with Discord</button></a>
               <% } %>
               &emsp;
-              <a href="http://bit.ly/quodbot"><button class="index-button"><i class="fas fa-plus"></i> Add Discord</button></a>
+              <a href="http://bit.ly/quodbot"><button class="btn btn-dark"><i class="fas fa-plus"></i> Add Discord</button></a>
 </section>
 
 
