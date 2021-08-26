@@ -29,22 +29,17 @@
     <li class="nav-item">
     <a href="/dashboard" class="nav-link active"><i class="fas fa-user"></i> <%= user.username %></a> 
   </li>
-    <% } else { %>
-      <li class="nav-item">
-      <a href="<%= loginlink %>" class="nav-link active"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
-    </li>
       <% } %>
 </ul>
   </nav>
 <br/>
 
 <section class="section p-3">
-
+  <div class="container">
   <h1>  <img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" class="rounded-pill"/>
 <%= user.username %></h1>
 <br/>
 <hr/>
-<div class="container">
   <div class="row">
 <%  guilds.forEach(guild => {
     const permsOnGuild = new perms(guild.permissions);
