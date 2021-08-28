@@ -18,14 +18,17 @@
     "cookies": "^0.8.0",
     "crypto": "^1.0.1",
     "debug": "~2.6.9",
+    "discord-canvas": "^1.4.1",
     "discord-oauth2": "^2.6.0",
     "discord.js": "^12.5.1",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "fs": "0.0.1-security",
     "http-errors": "~1.6.3",
+    "moment": "^2.29.1",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
-    "node-superfetch": "^0.1.11"
+    "node-superfetch": "^0.1.11",
+    "request": "^2.88.2"
   }
 }

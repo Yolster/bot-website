@@ -7,6 +7,7 @@ var Discord = require('discord.js');
 var www = require('../bot');
 const crypto = require('crypto');
 var body = require('body-parser')
+var request = require('request')
 
 const oauthclient = new OAuthClient({
     clientId: settings.clientId,
@@ -160,6 +161,69 @@ router.post('/:guildID/lang', async (req, res) => {
         });
     }else{
         www.connection.query(`INSERT INTO guilds (guildid,prefix,lang) VALUES ("?","!","?")`,[guildid,req.body.lang], function (err, result) {
+            if (err) console.log(err)
+        });
+    }    
+})
+  
+
+router.get('/:guildID/welcome', async (req, res) => {
+    let guildid = req.params.guildID;
+    const veri = await new Promise((resolve, reject) => {
+        www.connection.query(`SELECT * FROM welcome WHERE guildID = ?`, [guildid], function (err, result) {
+            if (err)
+                reject(err);
+            resolve(result);
+        });
+    });
+
+
+    let key = req.cookies.get('key');
+    let user = await oauthclient.getUser(key)
+    if (www.bot.guilds.cache.get(guildid)) {
+        let guild = www.bot.guilds.cache.get(guildid);
+        var channels = guild.channels.cache.filter(c => c.type == "text").map(c => ({
+            id: c.id,
+            name: c.name
+            }));
+            
+    if(veri < 1){
+        www.connection.query(`INSERT INTO welcome (guildid,channelID,message) VALUES (?,?,?)`,[guildid,channels[0].id,'Welcome to the server'], function (err, result) {
+            if (err) console.log(err)
+        });
+    }
+            res.render('plugins/welcome', {
+            guildid: guildid,
+            guild: guild,
+            channels: channels,
+            message: veri[0].message,
+            user: user
+        })
+    } else {
+        res.redirect('/');
+    }
+    if (!user) {
+        res.redirect('/');
+    }
+})
+
+
+router.post('/:guildID/welcome', async (req, res) => {
+    var guildid = req.body.guildid
+    const veri = await new Promise((resolve, reject) => {
+        www.connection.query(`SELECT * FROM welcome WHERE guildID = ?`, [guildid], function (err, result) {
+            if (err)
+                reject(err);
+            resolve(result);
+        });
+    });
+
+    if (veri.length > 0) { 
+        www.connection.query(`UPDATE welcome SET channelID = ?, message = ? WHERE guildID = ?`,[req.body.channel,req.body.message, guildid], function (err, result) {
+            if (err) console.log(err)
+        });
+    }else{
+        www.connection.query(`INSERT INTO welcome (guildID,channelID,message) VALUES ("?","?","?")`,[guildid,req.body.channel,req.body.message], function (err, result) {
             if (err) console.log(err)
         });
     }    
