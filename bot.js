@@ -50,7 +50,7 @@ bot.on('guildMemberAdd', async(member,message) => {
   const image = await new Canvas.Welcome()
   .setUsername(member.user.username)
   .setDiscriminator(member.user.discriminator)
-  .setMemberCount(member.guild.filter(member => !member.user.bot).size)
+  .setMemberCount(member.guild.memberCount)
   .setGuildName(member.guild.name)
   .setAvatar(member.user.avatarURL({format:"png"}))
   .setColor("border", "#8015EA")
@@ -64,7 +64,7 @@ bot.on('guildMemberAdd', async(member,message) => {
  
 const attachment = new Discord.MessageAttachment(image.toBuffer(), "rank-card.png");
  
-bot.channels.cache.get(veri[0].channelID).send(veri[0].message,attachment);
+bot.channels.cache.get(veri[0].channelID).send(veri[0].wmessage,attachment);
 })
 
 bot.on('guildMemberRemove', async(member,message) => {
@@ -79,8 +79,8 @@ bot.on('guildMemberRemove', async(member,message) => {
 
   const image = await new Canvas.Goodbye()
   .setUsername(member.user.username)
-  .setDiscriminator(member.user.discriminator)
-  .setMemberCount(member.guild.filter(member => !member.user.bot).size)
+  .setDiscriminator(member.user.discriminator)  
+  .setMemberCount(member.guild.memberCount)
   .setGuildName(member.guild.name)
   .setAvatar(member.user.avatarURL({format:"png"}))
   .setColor("border", "#8015EA")
@@ -94,7 +94,7 @@ bot.on('guildMemberRemove', async(member,message) => {
  
 const attachment = new Discord.MessageAttachment(image.toBuffer(), "rank-card.png");
  
-bot.channels.cache.get(veri[0].channelID).send(veri[0].message,attachment);
+bot.channels.cache.get(veri[0].channelID).send(veri[0].gmessage,attachment);
 })
 
 bot.elevation = message => {

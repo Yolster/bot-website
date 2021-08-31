@@ -43,19 +43,36 @@
 <br/>
 <form id="welcome-form" style="margin-top: 1em;" method="POST"> 
   <p>Channels</p>
-  <p style="color:lightslategray">You can select a channels in the server</p>
+  <p style="color:lightslategray">You can select a welcome channel in the server</p>
   <br/>
   <input type="hidden" id="guildid" value="<%= guild.id %>">
-      <select id="channel" name="channel" class="form-select">
-       <option disabled>Please select channels</option>
+      <select id="wchannel" name="wchannel" class="form-select">
+       <option disabled>Please select welcome channel</option>
        <% for(i = 0; i < channels.length; i++){ %>
        <option value="<%= channels[i].id %>"><%= channels[i].name %></option>
 <% }%>
   </select>
+  <br/>
+  <p style="color:lightslategray">You can select a goodbye channel in the server</p>
+  <br/>
+  <select id="gchannel" name="gchannel" class="form-select">
+    <option disabled>Please select goodbye channel</option>
+    <% for(i = 0; i < channels.length; i++){ %>
+    <option value="<%= channels[i].id %>"><%= channels[i].name %></option>
+<% }%>
+</select>
+<br/><br/>
+<p>Message</p>
+<p style="color:lightslategray">You can write a custom welcome message</p>
 <br/>
-<input type="text" id="message" class="form-control" name="message" placeholder="Your message" value="<%= message %>" required="require"><br><br>
+<input type="text" id="wmessage" class="form-control" name="wmessage" placeholder="Your welcome message" value="<%= wmessage %>" required="require">
+<br/>
+<p style="color:lightslategray">You can write a custom goodbye message</p>
+<br/>
+<input type="text" id="gmessage" class="form-control" name="gmessage" placeholder="Your goodbye message" value="<%= gmessage %>" required="require"><br><br>
   <button type="submit" class="btn btn-outline-success">Save Settings</button>
 </form>
+<br/>
 </div>
 </section>
 <script src="http://code.jquery.com/jquery-3.0.0.min.js"></script>
@@ -67,8 +84,10 @@
 			url:`/dashboard/${guildID}/welcome`,
 			type:'POST', 
 			data: {
-      channel: document.getElementById("channel").value,
-      message: document.getElementById("message").value,
+      wchannel: document.getElementById("wchannel").value,
+      wmessage: document.getElementById("wmessage").value,
+      gchannel: document.getElementById("gchannel").value,
+      gmessage: document.getElementById("gmessage").value,
       guildid: document.getElementById("guildid").value
       },
       succes: document.getElementById('success').innerHTML = "YOUR SETTINGS HAVE BEEN SAVED"

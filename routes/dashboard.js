@@ -188,7 +188,7 @@ router.get('/:guildID/welcome', async (req, res) => {
             }));
             
     if(veri < 1){
-        www.connection.query(`INSERT INTO welcome (guildid,channelID,message) VALUES (?,?,?)`,[guildid,channels[0].id,'Welcome to the server'], function (err, result) {
+        www.connection.query(`INSERT INTO welcome (guildID,whannelID,gchannelID,wmessage,gmessage) VALUES ("?","?","?","?","?")`,[guildid,channels[0].id,channels[0].id,'Welcome to the server','Goodbye :('], function (err, result) {
             if (err) console.log(err)
         });
     }
@@ -196,7 +196,8 @@ router.get('/:guildID/welcome', async (req, res) => {
             guildid: guildid,
             guild: guild,
             channels: channels,
-            message: veri[0].message,
+            wmessage: veri[0].wmessage,
+            gmessage: veri[0].gmessage,
             user: user
         })
     } else {
@@ -219,11 +220,11 @@ router.post('/:guildID/welcome', async (req, res) => {
     });
 
     if (veri.length > 0) { 
-        www.connection.query(`UPDATE welcome SET channelID = ?, message = ? WHERE guildID = ?`,[req.body.channel,req.body.message, guildid], function (err, result) {
+        www.connection.query(`UPDATE welcome SET wchannelID = ?,gchannelID = ?, wmessage = ?,gmessage = ? WHERE guildID = ?`,[req.body.wchannel,req.body.gchannel,req.body.wmessage,req.body.gmessage, guildid], function (err, result) {
             if (err) console.log(err)
         });
     }else{
-        www.connection.query(`INSERT INTO welcome (guildID,channelID,message) VALUES ("?","?","?")`,[guildid,req.body.channel,req.body.message], function (err, result) {
+        www.connection.query(`INSERT INTO welcome (guildID,whannelID,gchannelID,wmessage,gmessage) VALUES ("?","?","?","?","?")`,[guildid,req.body.wchannel,req.body.gchannel,req.body.wmessage,req.body.gmessage], function (err, result) {
             if (err) console.log(err)
         });
     }    
