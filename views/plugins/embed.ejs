@@ -46,31 +46,35 @@
   <p style="color:lightslategray">You can select a welcome channel in the server</p>
   <br/>
   <input type="hidden" id="guildid" value="<%= guild.id %>">
-      <select id="wchannel" name="wchannel" class="form-select">
-       <option disabled>Please select welcome channel</option>
-       <% for(i = 0; i < channels.length; i++){ %>
-       <option value="<%= channels[i].id %>"><%= channels[i].name %></option>
-<% }%>
-  </select>
+
   <br/>
   <p style="color:lightslategray">You can select a goodbye channel in the server</p>
   <br/>
-  <select id="gchannel" name="gchannel" class="form-select">
-    <option disabled>Please select goodbye channel</option>
+  <select id="channel" name="channel" class="form-select">
+    <option disabled>Please select the channel to send the embedl</option>
     <% for(i = 0; i < channels.length; i++){ %>
     <option value="<%= channels[i].id %>"><%= channels[i].name %></option>
 <% }%>
 </select>
 <br/><br/>
-<p>Message</p>
-<p style="color:lightslategray">You can write a custom welcome message</p>
+<p>Embed</p>
+<p style="color:lightslategray">You can write embed title</p>
 <br/>
-<input type="text" id="wmessage" class="form-control" name="wmessage" placeholder="Your welcome message" value="<%= wmessage %>" required="require">
+<input type="text" id="title" class="form-control" name="title" placeholder="Your title" required="require">
 <br/>
-<p style="color:lightslategray">You can write a custom goodbye message</p>
+<p style="color:lightslategray">You can write embed description</p>
 <br/>
-<input type="text" id="gmessage" class="form-control" name="gmessage" placeholder="Your goodbye message" value="<%= gmessage %>" required="require"><br><br>
-  <button type="submit" class="btn btn-outline-success">Save Settings</button>
+<input type="text" id="description" class="form-control" name="description" placeholder="Your description" required="require"><br><br>
+<br/>
+<p style="color:lightslategray">You can write embed footer</p>
+<br/>
+<input type="text" id="footer" class="form-control" name="footer" placeholder="Your footer" required="require"><br><br>
+<br/>
+<p style="color:lightslategray">You can select embed color</p>
+<br/>
+<input type="text" id="color" class="form-control" name="footer" placeholder="Your footer" required="require"><br><br>
+   
+<button type="submit" class="btn btn-outline-success">Save Settings</button>
 </form>
 <br/>
 </div>
