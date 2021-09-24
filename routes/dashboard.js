@@ -229,6 +229,43 @@ router.post('/:guildID/welcome', async (req, res) => {
         });
     }    
 })
+
+router.get('/:guildID/embed', async (req, res) => {
+    let guildid = req.params.guildID;
+
+    let key = req.cookies.get('key');
+    let user = await oauthclient.getUser(key)
+    if (www.bot.guilds.cache.get(guildid)) {
+        let guild = www.bot.guilds.cache.get(guildid);
+        var channels = guild.channels.cache.filter(c => c.type == "text").map(c => ({
+            id: c.id,
+            name: c.name
+            }));
+            
+            res.render('plugins/embed', {
+            guildid: guildid,
+            guild: guild,
+            channels: channels,
+            user: user
+        })
+    } else {
+        res.redirect('/');
+    }
+    if (!user) {
+        res.redirect('/');
+    }
+})
+
+
+router.post('/:guildID/embed', async (req, res) => {
+    var guildid = req.body.guildid
+    const embed = new Discord.MessageEmbed()
+    .setColor(req.body.color)
+    .setTitle(req.body.title)
+    .setDescription(req.body.description)
+    .setFooter(req.body.footer)
+    www.bot.channels.cache.get(req.body.channel).send(embed)
+})
   
 
 module.exports = router;

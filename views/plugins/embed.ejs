@@ -41,14 +41,10 @@
   <br/><br/>
 <h1>Welcome:</h1>
 <br/>
-<form id="welcome-form" style="margin-top: 1em;" method="POST"> 
+<form id="embed-form" style="margin-top: 1em;" method="POST"> 
   <p>Channels</p>
-  <p style="color:lightslategray">You can select a welcome channel in the server</p>
-  <br/>
+  <p style="color:lightslategray">You can send a embed message in channel</p>
   <input type="hidden" id="guildid" value="<%= guild.id %>">
-
-  <br/>
-  <p style="color:lightslategray">You can select a goodbye channel in the server</p>
   <br/>
   <select id="channel" name="channel" class="form-select">
     <option disabled>Please select the channel to send the embedl</option>
@@ -72,9 +68,9 @@
 <br/>
 <p style="color:lightslategray">You can select embed color</p>
 <br/>
-<input type="text" id="color" class="form-control" name="footer" placeholder="Your footer" required="require"><br><br>
+<input type="color" id="color" class="form-control" name="collor" placeholder="Your color" required="require"><br><br>
    
-<button type="submit" class="btn btn-outline-success">Save Settings</button>
+<button type="submit" class="btn btn-outline-success">Send Message</button>
 </form>
 <br/>
 </div>
@@ -82,19 +78,19 @@
 <script src="http://code.jquery.com/jquery-3.0.0.min.js"></script>
 <script>
    var guildID = document.getElementById("guildid").value;
-  $('#welcome-form').submit(function (e) {
+  $('#embed-form').submit(function (e) {
     e.preventDefault();
     $.ajax({
-			url:`/dashboard/${guildID}/welcome`,
+			url:`/dashboard/${guildID}/embed`,
 			type:'POST', 
 			data: {
-      wchannel: document.getElementById("wchannel").value,
-      wmessage: document.getElementById("wmessage").value,
-      gchannel: document.getElementById("gchannel").value,
-      gmessage: document.getElementById("gmessage").value,
-      guildid: document.getElementById("guildid").value
+        channel:document.getElementById('channel').value,
+        title: document.getElementById('title').value,
+        description: document.getElementById('description').value,
+        footer:document.getElementById('footer').value,
+        color:document.getElementById('color').value,
       },
-      succes: document.getElementById('success').innerHTML = "YOUR SETTINGS HAVE BEEN SAVED"
+      succes: document.getElementById('success').innerHTML = "YOUR EMBED SENDED"
 		});
   });
 </script>
