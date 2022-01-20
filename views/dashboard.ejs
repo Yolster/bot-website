@@ -1,38 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/stylesheets/bootstrap.css" type="text/css">
-  <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
-  <link rel="icon" href="/images/title-quod.png"/>
-  <script src="https://kit.fontawesome.com/fe063c303c.js" crossorigin="anonymous"></script>
-  <title>DASHBOARD</title>
-</head>
-<body class="bg-dark text-light">
-
-  <nav class="navbar navbar-expand navbar-dark bg-dark shadow-lg">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item">
-  <a href="/" class="nav-link active"><i class="fas fa-home"></i> HOME</a>
-</li>
-<li class="nav-item">
-  <a href="/" class="nav-link active"><i class="fas fa-rocket"></i> PREMIUM</a>
-</li>
-<li class="nav-item">
-  <a href="/" class="nav-link active"><i class="fas fa-question"></i> SUPPORT</a>
-</li>
-</ul>
-<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-   <% if(user != "yok" ){ %>
-    <li class="nav-item">
-    <a href="/dashboard" class="nav-link active"><i class="fas fa-user"></i> <%= user.username %></a> 
-  </li>
-      <% } %>
-</ul>
-  </nav>
-<br/>
+<%- include('./partials/header.ejs', {}) %>
 
 <section class="section p-3">
   <div class="container">
@@ -42,8 +8,7 @@
 <hr/>
   <div class="row">
 <%  guilds.forEach(guild => {
-    const permsOnGuild = new perms(guild.permissions);
-    if(!permsOnGuild.has("ADMINISTRATOR")) return;
+    if(guild.owner != true) return;
   %>
     <div class="col-2 btn btn-dark me-5" align="center">
     <img src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>  ? 'gif' : 'png'" class="rounded-pill"/><br/>

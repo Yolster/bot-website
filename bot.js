@@ -1,13 +1,10 @@
-var Discord = require('discord.js')
-var bot = new Discord.Client;
-const settings = require("./settings.json");
-var mysql = require('mysql')
-var fs = require('fs')
-const { promisify } = require("./bots/util/Util");
-const chalk = require("chalk");
-const Canvas = require('discord-canvas')
-require("./bots/util/eventLoader")(bot);
-
+const { Handler } = require('discord-slash-command-handler');
+const Discord = require("discord.js");
+const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS,Discord.Intents.FLAGS.GUILD_MEMBERS,Discord.Intents.FLAGS.GUILD_BANS,Discord.Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,Discord.Intents.FLAGS.GUILD_INTEGRATIONS,Discord.Intents.FLAGS.GUILD_WEBHOOKS,Discord.Intents.FLAGS.GUILD_INVITES,Discord.Intents.FLAGS.GUILD_VOICE_STATES,Discord.Intents.FLAGS.GUILD_PRESENCES,Discord.Intents.FLAGS.GUILD_MESSAGES,Discord.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,Discord.Intents.FLAGS.GUILD_MESSAGE_TYPING,Discord.Intents.FLAGS.DIRECT_MESSAGES,Discord.Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,Discord.Intents.FLAGS.DIRECT_MESSAGE_TYPING] });
+const fs = require("fs");
+const moment = require("moment");
+const mysql = require('mysql');
+const settings = require('./settings.json')
 var connection = mysql.createConnection({
   host     : settings.host,
   user     : settings.user,
@@ -22,95 +19,27 @@ connection.connect((err)=> {
   console.log('MySQL veritabanına başarıyla bağlanıldı.'); 
 });
 
-bot.commands = new Discord.Collection();
-bot.aliases = new Discord.Collection();
-fs.readdir("./bots/cmds/", (err, files) => {
-  if (err) console.error(err);
-  console.log(`${files.length} komut yüklenecek.`);
-  files.forEach(f => {
-    let props = require(`./bots/cmds/${f}`);
-    console.log(`Komut - ${props.help.name}.`);
-    bot.commands.set(props.help.name, props);
-    props.conf.aliases.forEach(alias => {
-      bot.aliases.set(alias, props.help.name);
-    });
+/*
+const { Player,RepeatMode  } = require("discord-music-player");
+const player = new Player(client, {
+    leaveOnEmpty: true,
+});
+client.player = player;
+*/
+
+const handler = new Handler(client, {
+  commandFolder: './commands',
+  eventFolder: './events',
+  commandType: 'file',
+  allSlash: false,
+  autoDefer: false,
+  handleSlash: true,
+  slashGuilds: ['801760918987472926'],
+  runParameters: ["1", "4"],
   });
-});
 
-bot.on('guildMemberAdd', async(member,message) => {
 
-  const veri = await new Promise((resolve, reject) => {
-    connection.query(`SELECT * FROM welcome WHERE guildID = ?`, [member.guild.id], function (err, result) {
-        if (err)
-            reject(err);
-        resolve(result);
-    });
-});
+client.login(settings.token);
 
-  const image = await new Canvas.Welcome()
-  .setUsername(member.user.username)
-  .setDiscriminator(member.user.discriminator)
-  .setMemberCount(member.guild.memberCount)
-  .setGuildName(member.guild.name)
-  .setAvatar(member.user.avatarURL({format:"png"}))
-  .setColor("border", "#8015EA")
-  .setColor("username-box", "#8015EA")
-  .setColor("discriminator-box", "#8015EA")
-  .setColor("message-box", "#8015EA")
-  .setColor("title", "#8015EA")
-  .setColor("avatar", "#8015EA")
-    .setBackground("http://unblast.com/wp-content/uploads/2021/01/Space-Background-Image-2.jpg")
-    .toAttachment();
- 
-const attachment = new Discord.MessageAttachment(image.toBuffer(), "rank-card.png");
- 
-bot.channels.cache.get(veri[0].channelID).send(veri[0].wmessage,attachment);
-})
 
-bot.on('guildMemberRemove', async(member,message) => {
-
-  const veri = await new Promise((resolve, reject) => {
-    connection.query(`SELECT * FROM welcome WHERE guildID = ?`, [member.guild.id], function (err, result) {
-        if (err)
-            reject(err);
-        resolve(result);
-    });
-});
-
-  const image = await new Canvas.Goodbye()
-  .setUsername(member.user.username)
-  .setDiscriminator(member.user.discriminator)  
-  .setMemberCount(member.guild.memberCount)
-  .setGuildName(member.guild.name)
-  .setAvatar(member.user.avatarURL({format:"png"}))
-  .setColor("border", "#8015EA")
-  .setColor("username-box", "#8015EA")
-  .setColor("discriminator-box", "#8015EA")
-  .setColor("message-box", "#8015EA")
-  .setColor("title", "#8015EA")
-  .setColor("avatar", "#8015EA")
-    .setBackground("http://unblast.com/wp-content/uploads/2021/01/Space-Background-Image-2.jpg")
-    .toAttachment();
- 
-const attachment = new Discord.MessageAttachment(image.toBuffer(), "rank-card.png");
- 
-bot.channels.cache.get(veri[0].channelID).send(veri[0].gmessage,attachment);
-})
-
-bot.elevation = message => {
-  if (!message.guild) {
-    return;
-  }
-
-  let permlvl = 0;
-  if (message.member.hasPermission("KICK_MEMBERS")) permlvl = 1;
-  if (message.member.hasPermission("BAN_MEMBERS")) permlvl = 2;
-  if (message.member.hasPermission("ADMINISTRATOR")) permlvl = 3;
-  if (message.author.id === "800809750584492052") permlvl = 4;
-  return permlvl;
-};
-
-bot.login(settings.token)
-
-module.exports.bot = bot;
-module.exports.connection = connection;
+module.exports = {bot: client,connection:connection}
