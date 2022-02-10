@@ -1,18 +1,11 @@
-<%- include('./partials/header.ejs', {}) %>
-
-<section class="section" align="center">
-    <img src="/images/quod.png" class="rounded-pill" width="300px" height="300px">
-    <br/><br/>
-    <h3>QUOD</h3>
-    <h4 style="color:lightslategrey">Easy to use discord bot</h3>
-        <br/>
-        <% if(user != "yok" ){ %>
-            <a href="/dashboard"><button class="btn btn-dark"><i class="fas fa-user"></i> <%= user.username %></button></a> 
-            <% } else { %>
-              <a href="<%= loginlink %>"><button class="btn btn-dark"><i class="fas fa-sign-in-alt"></i> Login with Discord</button></a>
-              <% } %>
-              &emsp;
-              <a href="http://bit.ly/quodbot"><button class="btn btn-dark"><i class="fas fa-plus"></i> Add Discord</button></a>
-</section>
-</body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+  </body>
 </html>

@@ -1,44 +1,8 @@
-::-webkit-scrollbar {
-  width: 0px;
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-.hero {
-  background-image: url('/images/computer.jpg');
-  background-size: cover;
-}
-
-.hero1 {
-  background-image: url('/images/mobile.jpg');
-  background-size: cover;
-}
-
-.hero2 {
-  background-image: url('/images/web.jpg');
-  background-size: cover;
-}
-
-#nav-btn {
-  color:white;
-  text-decoration: none;
-}
-
-
-@keyframes goup {
-  0%   {top:0px;}
-  25%  {top:-20px;}
-  50%  {top:-20px;}
-  75%  {top:-20px;}
-  100% {top:-20px;}
-}
-
-.index {
-  position: relative;
-  transition: 0.2s;
-}
-
-.index:hover {
-  background-color:#1c1f23;
-  color:white;
-  animation-name: goup;
-  animation-duration: 5s;
+a {
+  color: #00B7FF;
 }
