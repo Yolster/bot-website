@@ -1,8 +1,53 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+ul {
+    list-style: none;
 }
 
-a {
-  color: #00B7FF;
+li {
+    position: relative;
+}
+
+li:before {
+    content: url('https://cdn.discordapp.com/emojis/929343246763720704.webp?size=24');
+    position: absolute;
+    left: -2em;
+}
+
+.nav-img {
+    width: 60px;
+    height: 60px;
+}
+
+.nav-btn {
+    width: 150px;
+    height: 60px;
+}
+
+.illustrator-img {
+    width: 550px;
+    height: 450px;
+}
+
+.aa {
+    position: relative;
+    bottom: 100px;
+    width: 500px;
+}
+
+.bb {
+    position: relative;
+    left: 500px;
+    top: 150px;
+}
+
+.cc {
+    position: relative;
+    top: 300px;
+    right: 450px;
+}
+
+.dd {
+    position: relative;
+    top: 30px;
+    width: 400px;
+    height: 350px;
 }

@@ -1,11 +1,51 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<%- include('./partials/header.ejs', {}) %>
+<section class="mt-5 mb-5">
+    <div class="p-4 bg-primary">
+        <h1>Used This Servers
+            <img src="/images/lihez.webp" class="rounded-pill shadow-lg nav-img float-end"/>
+            <img src="/images/sahleyyn.webp" class="rounded-pill shadow-lg nav-img me-2 float-end"/>
+    </h1>
+    </div>
+    </section>
+
+    <section class="mt-5">
+        <div class="container">
+            <div class="float-start">
+            <h1>Say Hi, <br/> Your new Users!</h1>
+                <p>Welcome what comes to<br/> your server as support with editable image and text.</p>
+            </div>
+                <img src="/images/welcome.png" class="aa float-end"/>
+
+            <div class="bb float-end">
+            <h1>Earn XPs, <br/> Level UP!</h1>
+                <p>Determine the xp to be earned per message with the editable level system.<br/> Set rewards as you level up.</p>
+            </div>
+                <img src="/images/medal.png" class="aa float-start"/>
+
+            <div class="cc float-start">
+            <h1>Create Command, <br/> Use It!</h1>
+                <p>Welcome what comes to<br/> your server as support with editable image and text.</p>
+            </div>
+                <img src="/images/design.png" class="dd float-end"/>
+        </div>
+    
+        <br/>
+        <br/>
+</section>   
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<section  class="mt-5 mb-5">
+    <div class="p-4 bg-primary">
+        <h1 align="center">Trusted by</h1>
+        <div class="row d-flex justify-content-center">
+            <div class="col-3 me-3 pt-2 pb-2 bg-dark shadow-lg">
+            <img src="/images/lihez.webp" class="rounded-pill shadow-lg nav-img me-2 float-start"/>
+                <img src="https://cdn.discordapp.com/emojis/929343247589986384.webp?size=24" class="d-block"/> Lihez Software
+            </div>
+        <div class="col-3 pt-2 pb-2 bg-dark shadow-lg">
+            <img src="/images/sahleyyn.webp" class="rounded-pill shadow-lg nav-img me-2 float-start"/>
+                <img src="https://cdn.discordapp.com/emojis/929343247589986384.webp?size=24" class="d-block"/> 𝔰𝔞𝔥𝔩𝔢𝔶𝔶𝔫 𝔥𝔬𝔲𝔰𝔢 ☆
+        </div>
+        </div>
+    </div>
+    </section>
+<%- include('./partials/footer.ejs', {}) %>
